@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="jquery-3.1.1.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+     用户名：<input type="text" id = "text"/><br />
+     密码：<input type="password" id = "pass"><br />
+     <button id = "btn1">注册</button>
+     <button id = "btn2">登录</button>
+  </body>
+  <script type="text/javascript">
+      $("#btn1").click(function () {
+         var text = $("#text").val();
+         var pass = $("#pass").val();
+         $.ajax({
+           url:"/user",
+           type:"GET",
+           dateType:"text",
+           data:{act:"zhu",text:text,pass:pass},
+           success:function(date){
+             date = JSON.parse(date);
+             alert(date.msg);
+           }
+         })
+      });
+      $("#btn2").click(function () {
+         var text = $("#text").val();
+         var pass = $("#pass").val();
+         $.ajax({
+           url:"/user",
+           type:"GET",
+           dateType:"text",
+           data:{act:"deng",text:text,pass:pass},
+           success:function(date){
+             date = JSON.parse(date);
+             alert(date.msg);
+           }
+         })
+      });
+  </script>
+</html>
