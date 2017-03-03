@@ -1,9 +1,10 @@
 var webpack = require("webpack");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
-  entry:__dirname + "/component/app.js",
+  entry:__dirname + "/demo/react_LifeCycle/test.js",
   output:{
     filename:"bundle.js",
-    path:__dirname + "/public"
+    path:__dirname + "/demo/react_LifeCycle"
   },
   module:{
     rules:[
@@ -15,11 +16,15 @@ module.exports = {
           }
        },
        {
-         test:/\.css$/,
-         use:[
-           {loader:"style-loader"},
-           {loader:"css-loader"}
-         ]
+         test: /\.css$/,
+         use: ExtractTextPlugin.extract({
+           fallback: "style-loader",
+           use: "css-loader"
+         })
+       },
+       {
+         test: /\.(png|jpg)$/,
+　　　　　loader: 'url-loader?limit=10000&name=[sha512:hash:base64:7].[ext]'
        }
     ]
   },
@@ -29,6 +34,7 @@ module.exports = {
     port:5000
   },
   plugins:[
-     new webpack.HotModuleReplacementPlugin()
+     new webpack.HotModuleReplacementPlugin(),
+     new ExtractTextPlugin('[name].css')
   ]
 };

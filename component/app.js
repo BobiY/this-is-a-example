@@ -1,6 +1,7 @@
 import React,{ Component } from "react";
 import { render } from "react-dom";
 import "../index.css";
+import image from "../middle.png";
 
 class Li extends Component {
   constructor(props) {
@@ -79,6 +80,7 @@ class App extends Component {
             </li>
             {this.renderList()}
          </ul>
+         <img src = {image} />
       </div>
     )
   }
